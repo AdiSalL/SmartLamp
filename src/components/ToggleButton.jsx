@@ -23,8 +23,17 @@ export default function ToggleButton({
   messages,
   lastUpdate,
   setLastUpdate,
+  lampName = "Nama Lampu",
 }) {
-  const [lampState, setLampState] = useState(false);
+  const [lampState, setLampState] = useState(() => {
+    try {
+      const saved = localStorage.getItem("lampState");
+      return saved ? JSON.parsed(saved) : false;
+    } catch (err) {
+      return err;
+    }
+  });
+
   const [isLoading, setIsLoading] = useState(false);
 
   const [autoMode, setAutoMode] = useState(false);
@@ -47,10 +56,14 @@ export default function ToggleButton({
           }
         }
       } catch (error) {
-        // Ignore parse errors for non-JSON messages
+        console.log(error);
       }
     }
   }, [messages]);
+
+  useEffect(() => {
+    localStorage.setItem("lampState", JSON.stringify(lampState));
+  }, [lampState]);
 
   const sendLampCommand = async (action) => {
     if (!isConnected) {
@@ -84,6 +97,7 @@ export default function ToggleButton({
 
   const handleToggle = () => {
     const newAction = lampState ? "OFF" : "ON";
+
     sendLampCommand(newAction);
   };
 
@@ -118,28 +132,22 @@ export default function ToggleButton({
             {/* Main Control */}
             <div className="flex flex-col items-center space-y-6 w-full">
               {/* Toggle Switch */}
-              <div className="flex items-center space-x-4 p-4 border rounded-lg bg-muted/20">
-                <div className="relative">
+              <h1>{lampName}</h1>
+              <div className="flex flex-col md:flex-row justify-center items-center space-x-4 p-4  rounded-lg bg-muted/20 ">
+                <div className="relative ">
                   <div className="transition-all duration-500 ease-in-out transform hover:scale-110">
                     {lampState ? (
-                      <div className="relative">
-                        <Lightbulb className="h-10 w-10 text-yellow-400 animate-pulse drop-shadow-2xl" />
+                      <div className="relative ">
+                        <Lightbulb className="h-30 w-30 text-yellow-400 animate-pulse drop-shadow-2xl" />
                         <div className="absolute inset-0 bg-yellow-300 opacity-30 blur-2xl rounded-full animate-pulse"></div>
                       </div>
                     ) : (
-                      <Lightbulb className="h-10 w-10 text-gray-400 opacity-50" />
+                      <div className="flex justify-center">
+                        <Lightbulb className="h-30 w-30 text-gray-400 opacity-50" />
+                      </div>
                     )}
                   </div>
                 </div>
-                <span className="font-medium">
-                  {lampState ? "🔴 Mati" : "🟢 Nyala"}
-                </span>
-                <Switch
-                  checked={lampState}
-                  onCheckedChange={handleToggle}
-                  disabled={isLoading || !isConnected}
-                  className="scale-125"
-                />
               </div>
 
               {/* Big Action Button */}

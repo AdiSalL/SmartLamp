@@ -48,7 +48,7 @@ export default function Dashboard() {
       </div>
     );
   }
-
+  let array = [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10];
   return (
     <div className="min-h-screen bg-background p-4">
       <div className="mx-auto max-w-4xl space-y-6">
@@ -89,7 +89,7 @@ export default function Dashboard() {
           {/* Messages Area */}
 
           {/* Send Message Form */}
-          <div className="space-y-6 gap-2 flex flex-row ">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-center">
             <div className="">
               <ToggleButton
                 lastUpdate={lastUpdate}
@@ -97,15 +97,7 @@ export default function Dashboard() {
                 messages={messages}
                 onSendMessage={sendMessage}
                 isConnected={isConnected}
-              />
-            </div>
-            <div className="">
-              <ToggleButton
-                lastUpdate={lastUpdate}
-                setLastUpdate={setLastUpdate}
-                messages={messages}
-                onSendMessage={sendMessage}
-                isConnected={isConnected}
+                lampName="Lampu Teras"
               />
             </div>
           </div>
