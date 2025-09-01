@@ -55,12 +55,9 @@ export default function Dashboard() {
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold tracking-tight">
-              Soketi Dashboard
+            <h1 className="text-2xl font-bold tracking-tight">
+              SmartLamp Dashboard
             </h1>
-            <p className="text-muted-foreground">
-              Real-time messaging dashboard
-            </p>
           </div>
           <div className="flex items-center gap-2">
             <Badge
@@ -89,7 +86,7 @@ export default function Dashboard() {
           {/* Messages Area */}
 
           {/* Send Message Form */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-center">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-center">
             <div className="">
               <ToggleButton
                 lastUpdate={lastUpdate}
