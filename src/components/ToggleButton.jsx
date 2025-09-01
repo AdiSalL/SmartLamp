@@ -28,8 +28,10 @@ export default function ToggleButton({
   const [lampState, setLampState] = useState(() => {
     try {
       const saved = localStorage.getItem("lampState");
-      return saved ? JSON.parsed(saved) : false;
+      return saved ? JSON.parse(saved) : false;
     } catch (err) {
+      console.error("Failed to parse lampState:", err);
+
       return err;
     }
   });
