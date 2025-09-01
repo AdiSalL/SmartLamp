@@ -89,8 +89,8 @@ export default function Dashboard() {
           {/* Messages Area */}
 
           {/* Send Message Form */}
-          <div className="space-y-6 ">
-            <div className="flex">
+          <div className="space-y-6">
+            <div className=" bg-red-300 border">
               <Card>
                 <CardContent>
                   <ToggleButton
@@ -105,11 +105,27 @@ export default function Dashboard() {
             </div>
 
             {/* Connection Info */}
-            <ConnectionInfo
-              lastUpdate={lastUpdate}
-              soketiConfig={soketiConfig}
-              isConnected={isConnected}
-            ></ConnectionInfo>
+            {!isConnected ? (
+              <Card className="border-destructive bg-destructive/5">
+                <CardContent className="pt-6">
+                  <div className="text-center">
+                    <WifiOff className="h-8 w-8 text-destructive mx-auto mb-2" />
+                    <h3 className="font-semibold text-destructive">
+                      Connection Lost
+                    </h3>
+                    <p className="text-sm text-muted-foreground mt-1">
+                      Check your Soketi configuration and network connection
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+            ) : (
+              <ConnectionInfo
+                lastUpdate={lastUpdate}
+                soketiConfig={soketiConfig}
+                isConnected={isConnected}
+              ></ConnectionInfo>
+            )}
           </div>
         </div>
       </div>
