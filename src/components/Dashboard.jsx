@@ -89,18 +89,20 @@ export default function Dashboard() {
           {/* Messages Area */}
 
           {/* Send Message Form */}
-          <div className="space-y-6">
-            <Card>
-              <CardContent>
-                <ToggleButton
-                  lastUpdate={lastUpdate}
-                  setLastUpdate={setLastUpdate}
-                  messages={messages}
-                  onSendMessage={sendMessage}
-                  isConnected={isConnected}
-                />
-              </CardContent>
-            </Card>
+          <div className="space-y-6 ">
+            <div className="flex">
+              <Card>
+                <CardContent>
+                  <ToggleButton
+                    lastUpdate={lastUpdate}
+                    setLastUpdate={setLastUpdate}
+                    messages={messages}
+                    onSendMessage={sendMessage}
+                    isConnected={isConnected}
+                  />
+                </CardContent>
+              </Card>
+            </div>
 
             {/* Connection Info */}
             <ConnectionInfo

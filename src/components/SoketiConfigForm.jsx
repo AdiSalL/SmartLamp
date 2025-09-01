@@ -1,27 +1,27 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Button } from "./ui/button"
-import { Input } from "./ui/input"
-import { Label } from "./ui/label"
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card"
-import { Settings, Save } from "lucide-react"
-import { useToast } from "../hooks/use-toast"
+import { useState } from "react";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
+import { Label } from "./ui/label";
+import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { Settings, Save } from "lucide-react";
+import { useToast } from "../hooks/use-toast";
 
 export function SoketiConfigForm({ onConfigSave, initialConfig }) {
   const [config, setConfig] = useState({
-    host: initialConfig?.host || "localhost",
-    port: initialConfig?.port || "6001",
-    appId: initialConfig?.appId || "app-id",
-    key: initialConfig?.key || "app-key",
-    secret: initialConfig?.secret || "app-secret",
+    host: initialConfig?.host || "soketi.ajikamaludin.id",
+    port: initialConfig?.port || "6002",
+    appId: initialConfig?.appId || "default_app_id",
+    key: initialConfig?.key || "default_app_key",
+    secret: initialConfig?.secret || "default_app_secret",
     cluster: initialConfig?.cluster || "mt1",
     forceTLS: initialConfig?.forceTLS || false,
-  })
-  const { toast } = useToast()
+  });
+  const { toast } = useToast();
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     // Validate required fields
     if (!config.host || !config.port || !config.appId || !config.key) {
@@ -29,20 +29,20 @@ export function SoketiConfigForm({ onConfigSave, initialConfig }) {
         title: "Validation Error",
         description: "Please fill in all required fields",
         variant: "destructive",
-      })
-      return
+      });
+      return;
     }
 
-    onConfigSave(config)
+    onConfigSave(config);
     toast({
       title: "Configuration Saved",
       description: "Soketi configuration has been saved successfully",
-    })
-  }
+    });
+  };
 
   const handleInputChange = (field, value) => {
-    setConfig((prev) => ({ ...prev, [field]: value }))
-  }
+    setConfig((prev) => ({ ...prev, [field]: value }));
+  };
 
   return (
     <Card className="w-full max-w-2xl mx-auto">
@@ -52,7 +52,8 @@ export function SoketiConfigForm({ onConfigSave, initialConfig }) {
           Soketi Configuration
         </CardTitle>
         <p className="text-sm text-muted-foreground">
-          Configure your Soketi server connection settings before using the dashboard
+          Configure your Soketi server connection settings before using the
+          dashboard
         </p>
       </CardHeader>
       <CardContent>
@@ -147,5 +148,5 @@ export function SoketiConfigForm({ onConfigSave, initialConfig }) {
         </form>
       </CardContent>
     </Card>
-  )
+  );
 }

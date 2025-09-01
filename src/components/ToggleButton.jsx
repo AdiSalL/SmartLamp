@@ -114,25 +114,25 @@ export default function ToggleButton({
         <CardContent>
           <div className="flex flex-col items-center space-y-8">
             {/* Lamp Visual with Animation */}
-            <div className="relative">
-              <div className="transition-all duration-500 ease-in-out transform hover:scale-110">
-                {lampState ? (
-                  <div className="relative">
-                    <Lightbulb className="h-10 w-10 text-yellow-400 animate-pulse drop-shadow-2xl" />
-                    <div className="absolute inset-0 bg-yellow-300 opacity-30 blur-2xl rounded-full animate-pulse"></div>
-                  </div>
-                ) : (
-                  <Lightbulb className="h-10 w-10 text-gray-400 opacity-50" />
-                )}
-              </div>
-            </div>
 
             {/* Main Control */}
             <div className="flex flex-col items-center space-y-6 w-full">
               {/* Toggle Switch */}
               <div className="flex items-center space-x-4 p-4 border rounded-lg bg-muted/20">
+                <div className="relative">
+                  <div className="transition-all duration-500 ease-in-out transform hover:scale-110">
+                    {lampState ? (
+                      <div className="relative">
+                        <Lightbulb className="h-10 w-10 text-yellow-400 animate-pulse drop-shadow-2xl" />
+                        <div className="absolute inset-0 bg-yellow-300 opacity-30 blur-2xl rounded-full animate-pulse"></div>
+                      </div>
+                    ) : (
+                      <Lightbulb className="h-10 w-10 text-gray-400 opacity-50" />
+                    )}
+                  </div>
+                </div>
                 <span className="font-medium">
-                  {lampState ? "🔴 Matikan" : "🟢 Nyalakan"}
+                  {lampState ? "🔴 Mati" : "🟢 Nyala"}
                 </span>
                 <Switch
                   checked={lampState}
@@ -146,12 +146,8 @@ export default function ToggleButton({
               <Button
                 onClick={handleToggle}
                 disabled={isLoading || !isConnected}
-                size="lg"
-                className={`w-full py-6 text-xl font-bold transition-all transform hover:scale-105 ${
-                  lampState
-                    ? "bg-red-500 hover:bg-red-600 text-white shadow-red-500/25"
-                    : "bg-green-500 hover:bg-green-600 text-white shadow-green-500/25"
-                } shadow-lg`}
+                size="sm"
+                className={`w-full py-6 text-1xl font-bold transition-all shadow-lg`}
               >
                 {isLoading ? (
                   <>
