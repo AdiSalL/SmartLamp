@@ -141,7 +141,10 @@ export function SoketiConfigForm({ onConfigSave, initialConfig }) {
             <Label htmlFor="forceTLS">Force TLS</Label>
           </div>
 
-          <Button type="submit" className="w-full">
+          <Button
+            type="submit"
+            className="w-full hover:scale-[1.02] active:scale-[0.98]"
+          >
             <Save className="h-4 w-4 mr-2" />
             Save Configuration & Connect
           </Button>
