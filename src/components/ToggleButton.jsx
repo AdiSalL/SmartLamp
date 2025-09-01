@@ -146,23 +146,40 @@ export default function ToggleButton({
               <Button
                 onClick={handleToggle}
                 disabled={isLoading || !isConnected}
-                size="sm"
-                className={`w-full py-6 text-1xl font-bold transition-all shadow-lg`}
+                className={`
+    w-full h-16 text-lg font-semibold rounded-xl transition-all duration-300 
+    ${
+      lampState
+        ? "bg-red-500 hover:bg-red-600 text-white shadow-lg shadow-red-500/25"
+        : "bg-green-500 hover:bg-green-600 text-white shadow-lg shadow-green-500/25"
+    }
+    ${isLoading ? "opacity-70" : ""}
+    ${
+      !isConnected
+        ? "opacity-50 cursor-not-allowed"
+        : "hover:scale-[1.02] active:scale-[0.98]"
+    }
+  `}
               >
                 {isLoading ? (
-                  <>
-                    <Loader2 className="h-6 w-6 mr-3 animate-spin" />
+                  <div className="flex items-center justify-center">
+                    <Loader2 className="h-5 w-5 mr-2 animate-spin" />
                     Mengirim...
-                  </>
+                  </div>
                 ) : (
-                  <>
+                  <div className="flex items-center justify-center">
                     {lampState ? (
-                      <ZapOff className="h-6 w-6 mr-3" />
+                      <>
+                        <ZapOff className="h-5 w-5 mr-2" />
+                        Matikan
+                      </>
                     ) : (
-                      <Zap className="h-6 w-6 mr-3" />
+                      <>
+                        <Zap className="h-5 w-5 mr-2" />
+                        Nyalakan
+                      </>
                     )}
-                    {lampState ? "MATIKAN LAMPU" : "NYALAKAN LAMPU"}
-                  </>
+                  </div>
                 )}
               </Button>
             </div>

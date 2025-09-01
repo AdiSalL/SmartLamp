@@ -89,44 +89,48 @@ export default function Dashboard() {
           {/* Messages Area */}
 
           {/* Send Message Form */}
-          <div className="space-y-6">
-            <div className=" bg-red-300 border">
-              <Card>
-                <CardContent>
-                  <ToggleButton
-                    lastUpdate={lastUpdate}
-                    setLastUpdate={setLastUpdate}
-                    messages={messages}
-                    onSendMessage={sendMessage}
-                    isConnected={isConnected}
-                  />
-                </CardContent>
-              </Card>
-            </div>
-
-            {/* Connection Info */}
-            {!isConnected ? (
-              <Card className="border-destructive bg-destructive/5">
-                <CardContent className="pt-6">
-                  <div className="text-center">
-                    <WifiOff className="h-8 w-8 text-destructive mx-auto mb-2" />
-                    <h3 className="font-semibold text-destructive">
-                      Connection Lost
-                    </h3>
-                    <p className="text-sm text-muted-foreground mt-1">
-                      Check your Soketi configuration and network connection
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            ) : (
-              <ConnectionInfo
+          <div className="space-y-6 gap-2 flex flex-row ">
+            <div className="">
+              <ToggleButton
                 lastUpdate={lastUpdate}
-                soketiConfig={soketiConfig}
+                setLastUpdate={setLastUpdate}
+                messages={messages}
+                onSendMessage={sendMessage}
                 isConnected={isConnected}
-              ></ConnectionInfo>
-            )}
+              />
+            </div>
+            <div className="">
+              <ToggleButton
+                lastUpdate={lastUpdate}
+                setLastUpdate={setLastUpdate}
+                messages={messages}
+                onSendMessage={sendMessage}
+                isConnected={isConnected}
+              />
+            </div>
           </div>
+          {/* Connection Info */}
+          {!isConnected ? (
+            <Card className="border-destructive bg-destructive/5">
+              <CardContent className="pt-6">
+                <div className="text-center">
+                  <WifiOff className="h-8 w-8 text-destructive mx-auto mb-2" />
+                  <h3 className="font-semibold text-destructive">
+                    Connection Lost
+                  </h3>
+                  <p className="text-sm text-muted-foreground mt-1">
+                    Check your Soketi configuration and network connection
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          ) : (
+            <ConnectionInfo
+              lastUpdate={lastUpdate}
+              soketiConfig={soketiConfig}
+              isConnected={isConnected}
+            ></ConnectionInfo>
+          )}
         </div>
       </div>
     </div>
